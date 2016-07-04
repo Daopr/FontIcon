@@ -21,29 +21,38 @@
 /*! Make a sized-to-fit UILabel containing an icon in the given font size and color.
  */
 + (UILabel*)labelWithIcon:(NSString*)fa_icon
-                fontName:(NSString *)name
+                 fontName:(NSString *)name
                      size:(CGFloat)size
                     color:(UIColor*)color;
 
 /*! Adjust an existing UILabel to show a FontAwesome icon.
  */
 + (void)label:(UILabel*)label
-        fontName:(NSString *)name
+     fontName:(NSString *)name
       setIcon:(NSString*)fa_icon
          size:(CGFloat)size
         color:(UIColor*)color
     sizeToFit:(BOOL)shouldSizeToFit;
 
 + (UIButton*)buttonWithIcon:(NSString*)fa_icon
-                    fontName:(NSString *)name
+                   fontName:(NSString *)name
                        size:(CGFloat)size
                       color:(UIColor*)color;
 
 + (void)button:(UIButton *)button
-        fontName:(NSString *)name
+      fontName:(NSString *)name
        setIcon:(NSString*)fa_icon
           size:(CGFloat)size
          color:(UIColor*)color;
+
++ (void)changeButton:(UIButton *)button
+            fontName:(NSString *)name
+             setIcon:(NSString*)fa_icon
+                size:(CGFloat)size
+               color:(UIColor*)color;
+
++ (void)changeButton:(UIButton *)button
+             setIcon:(NSString*)fa_icon;
 //================================
 // Image Methods
 //================================
@@ -51,7 +60,7 @@
 /*! Create a UIImage with a FontAwesome icon, with the image and the icon the same size
  */
 + (UIImage*)imageWithIcon:(NSString*)fa_icon
-                fontName:(NSString *)name
+                 fontName:(NSString *)name
                 iconColor:(UIColor*)iconColor
                  iconSize:(CGFloat)iconSize;
 +(void)registerFontWithDict:(NSDictionary*)resDict;
@@ -60,7 +69,7 @@
 /*! Create a UIImage with a FontAwesome icon, and specify a square size for the icon, which will be centered within the CGSize specified for the image itself.
  */
 + (UIImage*)imageWithIcon:(NSString*)fa_icon
-                fontName:(NSString *)name
+                 fontName:(NSString *)name
                 iconColor:(UIColor*)color
                  iconSize:(CGFloat)iconSize
                 imageSize:(CGSize)imageSize;

@@ -43,14 +43,14 @@
 +(void)loadFontList{
     NSDictionary *fontDict = [self dictionaryFromResource:@"fontIconConfig.json"];
     NSArray *fontList = [fontDict allValues];
-    #ifndef DISABLE_FOUNDATIONICONS_AUTO_REGISTRATION
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            for (NSDictionary *resDict in fontList) {
-                [self registerFontWithDict:resDict];
-            }
-        });
-    #endif
+#ifndef DISABLE_FOUNDATIONICONS_AUTO_REGISTRATION
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        for (NSDictionary *resDict in fontList) {
+            [self registerFontWithDict:resDict];
+        }
+    });
+#endif
 }
 
 +(void)registerFontWithDict:(NSDictionary*)resDict{
@@ -96,7 +96,7 @@
 }
 
 + (UILabel*)labelWithIcon:(NSString*)fa_icon
-                    fontName:(NSString *)name
+                 fontName:(NSString *)name
                      size:(CGFloat)size
                     color:(UIColor*)color
 {
@@ -125,8 +125,8 @@
 
 + (UIButton*)buttonWithIcon:(NSString*)fa_icon
                    fontName:(NSString *)name
-                     size:(CGFloat)size
-                    color:(UIColor*)color
+                       size:(CGFloat)size
+                      color:(UIColor*)color
 {
     UIButton *button = [[UIButton alloc] init];
     [IconFont button:button fontName:name setIcon:fa_icon size:size color:color];
@@ -134,16 +134,37 @@
 }
 
 + (void)button:(UIButton *)button
-        fontName:(NSString *)name
-      setIcon:(NSString*)fa_icon
-         size:(CGFloat)size
-        color:(UIColor*)color
+      fontName:(NSString *)name
+       setIcon:(NSString*)fa_icon
+          size:(CGFloat)size
+         color:(UIColor*)color
 {
     button.titleLabel.font = [IconFont font:name withSize:size];
     [button setTitle:fa_icon forState:UIControlStateNormal];
     [button setTitle:fa_icon forState:UIControlStateSelected];
     [button setTitleColor:color forState:UIControlStateNormal];
+    //    [button setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
     [button sizeToFit];
+}
+
+
++ (void)changeButton:(UIButton *)button
+            fontName:(NSString *)name
+             setIcon:(NSString*)fa_icon
+                size:(CGFloat)size
+               color:(UIColor*)color
+{
+    button.titleLabel.font = [IconFont font:name withSize:size];
+    [button setTitle:fa_icon forState:UIControlStateNormal];
+    [button setTitle:fa_icon forState:UIControlStateSelected];
+    [button setTitleColor:color forState:UIControlStateNormal];
+}
+
++ (void)changeButton:(UIButton *)button
+             setIcon:(NSString*)fa_icon
+{
+    [button setTitle:fa_icon forState:UIControlStateNormal];
+    [button setTitle:fa_icon forState:UIControlStateSelected];
 }
 
 //================================
@@ -151,15 +172,15 @@
 //================================
 
 + (UIImage*)imageWithIcon:(NSString*)fa_icon
-                fontName:(NSString *)name
+                 fontName:(NSString *)name
                 iconColor:(UIColor*)iconColor
                  iconSize:(CGFloat)iconSize
 {
     return [IconFont imageWithIcon:fa_icon
-                            fontName:(NSString *)name
-                            iconColor:iconColor
-                             iconSize:iconSize
-                            imageSize:CGSizeMake(iconSize, iconSize)];
+                          fontName:(NSString *)name
+                         iconColor:iconColor
+                          iconSize:iconSize
+                         imageSize:CGSizeMake(iconSize, iconSize)];
 }
 
 + (UIImage*)imageWithIcon:(NSString*)fa_icon
@@ -181,7 +202,7 @@
                 imageSize:(CGSize)imageSize;
 {
     NSAssert(characterCodeString, @"You must specify a character code, such as \\uf190.");
-
+    
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6) {
         if (!iconColor) { iconColor = [UIColor blackColor]; }
         

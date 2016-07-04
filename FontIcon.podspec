@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios,'6.0'
   s.license               = { :type => "MIT", :file => "LICENSE" }
   s.author                = { "zhuchao" => "zhuchaowe@163.com" }
-  s.source                = { :git => "https://github.com/zhuchaowe/FontIcon.git",:tag=>"1.0"}
+  s.source                = { :git => "https://github.com/ForrestAlfred/FontIcon",:tag=>"1.0"}
   s.ios.deployment_target = "6.0"
   s.source_files = '*.{h,m,mm}'
   s.resources   = "**/*.{json,ttf,otf}","*.{json,ttf,otf}"
